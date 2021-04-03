@@ -4,10 +4,11 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import requests
 import pymongo
+from webdriver_manager.chrome import ChromeDriverManager
 
 def init_browser():
     # @NOTE: Replace the path with your actual path to the chromedriver
-    executable_path = {"executable_path": "chromedriver.exe"}
+    executable_path = {"executable_path": ChromeDriverManager().install()}
     return Browser("chrome", **executable_path, headless=False)
 
 def scrape():
@@ -86,6 +87,9 @@ def scrape():
         "fact_table": str(mars_html_table),
         "hemisphere_images": hemisphere_image_urls
     }
+
+     # Quit the browser
+    browser.quit()
 
     return mars_dict
 

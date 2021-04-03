@@ -16,6 +16,7 @@ def index():
 
     # Find one record of data from the mongo database
     mars_dict = mongo.db.mars_dict.find_one()
+    print(str(mars_dict))
     # Return template and data
     return render_template("index.html", mars=mars_dict)
 
